@@ -1,21 +1,23 @@
 #include "main.h"
+
 /**
- * string_toupper - changes all lowercase letters of a string
- * to uppercase
+ * string_toupper - Function that reverses the content of an array of integers.
  *
- * @s: string to modify
+ * @s: s is the array
  *
- * Return: the resulting string
+ * Return: Always 0.
  */
 char *string_toupper(char *s)
 {
-	int x = 0;
+	int i = 0;
 
-	while (*(s + x))
+	while (s[i] != '\0')
 	{
-		if ((*(s + x) >= 97) &&  (*(s + x) <= 122))
-			*(s + x) = *(s + x) - 32;
-		x++;
+		if ((s[i] >= 97) && (s[i] <= 122))
+		{
+			s[i] = s[i] - 32;
+		}
+	i++;
 	}
 	return (s);
 }
