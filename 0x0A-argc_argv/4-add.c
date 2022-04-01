@@ -1,41 +1,53 @@
 #include <stdio.h>
-#include <ctype.h>
+#include <stdbool.h>
 #include <stdlib.h>
-#include <string.h>
 /**
- * checker - checks for valid input
- * @argc: argument count
- * @i: counter for argv[]
- * @j: counter for argv[][]
- * @argv: argument vector
- * Return: 0 on success, 1 on failure
+ * isNumeric - checks if string  is numeric
+ *
+ * @s: string to check
+ *
+ * Return: true if is numeric, otherwise return false
  */
-int checker(int argc, int i, unsigned int j, char *argv[])
+bool isNumeric(char *s)
 {
-	for (i = 1; i <= argc; i++)
-		for (j = 0; argv[i] != '\0' && j < strlen(argv[i]); j++)
-			if (isdigit(argv[i][j]) == 0)
-				return (1);
-	return (0);
+	int i;
+
+	for (i = 0; s[i] != '\0'; i++)
+	{
+		if (s[i] < 48 || s[i] > 57)
+		{
+			return (false);
+		}
+	}
+	return (true);
 }
+
 /**
- * main - adds all arguments together if they are digits.
- * @argc: argument count only accepts ints separated by spaces.
- * @argv: argument vector
- * Return: 0 on success, 1 on failure
+ * main - Entry Point
+ *
+ * @argc: arg counter
+ * @argv: arguments array
+ *
+ * Return: Always 0 (Success)
  */
 int main(int argc, char *argv[])
 {
-	int result, i;
+	int sum = 0;
+	int i;
+	(void)argc;
+	(void)argv;
 
-	result = 0;
-	if (checker(argc, 1, 0, argv) == 1)
-	{
-		printf("Error\n");
-		return (1);
-	}
 	for (i = 1; i < argc; i++)
-		result += atoi(argv[i]);
-	printf("%d\n", result);
+	{
+		if (!isNumeric(argv[i]))
+		{
+			printf("Error\n");
+			return (1);
+		}
+		sum += atoi(argv[i]);
+	}
+
+	printf("%d\n", sum);
+
 	return (0);
 }
